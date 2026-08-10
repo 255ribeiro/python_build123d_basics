@@ -37,14 +37,14 @@ nav:
   - Home: index.md
 
   - Google Colab: 
-    - intro: ./tuto_colab_build/cadquery_basic_gc.ipynb
-    - primitivas: ./tuto_colab_build/cadquery_primitives_gc.ipynb
-    - treliças: ./tuto_colab_build/cadquery_trusses_gc.ipynb
+    - intro: ./tuto_colab_build/build123d_basic_gc.ipynb
+    - primitivas: ./tuto_colab_build/build123d_primitives_gc.ipynb
+    - treliças: ./tuto_colab_build/build123d_trusses_gc.ipynb
     - Modelagem: ./tuto_colab_build/2d_to_3d.ipynb
-    - Exercício multi pav: ./tuto_colab_build/cadquery_multiplos_pav.ipynb
-    - Exercício multi pav resolvido: ./tuto_colab_build/multi_pav_cq_resolvido.ipynb
-    - Exercício multi pav perfil: ./tuto_colab_build/cadquery_multiplos_pav_perfil.ipynb
-    - Exercício pavimentos deslocados: ./tuto_colab_build/multi_pav_cq_ramdom_disp_resolvido.ipynb
+    - Exercício multi pav: ./tuto_colab_build/build123d_multiplos_pav.ipynb
+    - Exercício multi pav resolvido: ./tuto_colab_build/multi_pav_b3d_resolvido.ipynb
+    - Exercício multi pav perfil: ./tuto_colab_build/build123d_multiplos_pav_perfil.ipynb
+    - Exercício pavimentos deslocados: ./tuto_colab_build/multi_pav_b3d_ramdom_disp_resolvido.ipynb
     - Criando volumes com o loft: ./tuto_colab_build/multi_pav_loft.ipynb
     - Exportação IFC:
       - Exportação IFC: ./tuto_colab_build/step_to_ifc.ipynb

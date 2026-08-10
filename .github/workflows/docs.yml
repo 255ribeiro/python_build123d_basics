@@ -20,8 +20,8 @@ jobs:
       - uses: actions/setup-python@v6
         with:
           python-version: 3.x
-      - run: pip install zensical
-      - run: zensical build --clean
+      - run: pip install zensical mkdocs-jupyter
+      - run: zensical build -f mkdocs.yml --clean
       - uses: actions/upload-pages-artifact@v5
         with:
           path: site
