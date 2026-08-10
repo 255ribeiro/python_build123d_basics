@@ -1,173 +1,51 @@
 ---
-icon: lucide/rocket
+icon: material/office-building
 ---
 
-# Get started
+# Python Build123d para Arquitetos e Engenheiros
 
-For full documentation visit [zensical.org](https://zensical.org/docs/).
+Material de apoio para modelagem paramétrica com Python e Build123d, com foco em aplicações para arquitetura e engenharia.
 
-## Commands
+## Objetivo
 
-* [`zensical new`][new] - Create a new project
-* [`zensical serve`][serve] - Start local web server
-* [`zensical build`][build] - Build your site
+Este repositório reúne exemplos práticos para:
 
-  [new]: https://zensical.org/docs/usage/new/
-  [serve]: https://zensical.org/docs/usage/preview/
-  [build]: https://zensical.org/docs/usage/build/
+- criação de geometrias 2D e 3D
+- modelagem por operações paramétricas
+- exercícios com múltiplos pavimentos
+- exportação e interoperabilidade de arquivos
 
-## Examples
+## Pré-requisitos
 
-### Admonitions
+- Python 3.12 ou superior
+- Ambiente virtual Python (`.venv`)
+- Dependências do projeto instaladas com `uv sync --dev`
+- MkDocs Material e plugin `mkdocs-jupyter` para renderização dos notebooks
 
-> Go to [documentation](https://zensical.org/docs/authoring/admonitions/)
+Comandos recomendados:
 
-!!! note
-
-    This is a **note** admonition. Use it to provide helpful information.
-
-!!! warning
-
-    This is a **warning** admonition. Be careful!
-
-### Details
-
-> Go to [documentation](https://zensical.org/docs/authoring/admonitions/#collapsible-blocks)
-
-??? info "Click to expand for more info"
-
-    This content is hidden until you click to expand it.
-    Great for FAQs or long explanations.
-
-## Code Blocks
-
-> Go to [documentation](https://zensical.org/docs/authoring/code-blocks/)
-
-``` python hl_lines="2" title="Code blocks"
-def greet(name):
-    print(f"Hello, {name}!") # (1)!
-
-greet("Python")
+```bash
+uv sync --dev
+mkdocs serve -f mkdocs.yml
 ```
 
-1.  > Go to [documentation](https://zensical.org/docs/authoring/code-blocks/#code-annotations)
+## Trilha sugerida
 
-    Code annotations allow to attach notes to lines of code.
+1. Comece por Modelagem no menu Google Colab.
+2. Avance para Primitivas e Treliças.
+3. Faça os exercícios de múltiplos pavimentos.
+4. Finalize com os exemplos de exportação IFC.
 
-Code can also be highlighted inline: `#!python print("Hello, Python!")`.
+## Conteúdo disponível
 
-## Content tabs
+- Notebooks de modelagem em [Google Colab](tuto_colab_build/build123d_basic_gc.ipynb)
+- Conceitos de apoio em [Apêndice](conceitos/matrizes_de_transformacao.md)
+- Arquivos para download em [Downloads](down_files/down_files.md)
 
-> Go to [documentation](https://zensical.org/docs/authoring/content-tabs/)
+## Como executar localmente
 
-=== "Python"
-
-    ``` python
-    print("Hello from Python!")
-    ```
-
-=== "Rust"
-
-    ``` rs
-    println!("Hello from Rust!");
-    ```
-
-## Diagrams
-
-> Go to [documentation](https://zensical.org/docs/authoring/diagrams/)
-
-``` mermaid
-graph LR
-  A[Start] --> B{Error?};
-  B -->|Yes| C[Hmm...];
-  C --> D[Debug];
-  D --> B;
-  B ---->|No| E[Yay!];
+```bash
+mkdocs serve -f mkdocs.yml
 ```
 
-## Footnotes
-
-> Go to [documentation](https://zensical.org/docs/authoring/footnotes/)
-
-Here's a sentence with a footnote.[^1]
-
-Hover it, to see a tooltip.
-
-[^1]: This is the footnote.
-
-
-## Formatting
-
-> Go to [documentation](https://zensical.org/docs/authoring/formatting/)
-
-- ==This was marked (highlight)==
-- ^^This was inserted (underline)^^
-- ~~This was deleted (strikethrough)~~
-- H~2~O
-- A^T^A
-- ++ctrl+alt+del++
-
-## Icons, Emojis
-
-> Go to [documentation](https://zensical.org/docs/authoring/icons-emojis/)
-
-* :sparkles: `:sparkles:`
-* :rocket: `:rocket:`
-* :tada: `:tada:`
-* :memo: `:memo:`
-* :eyes: `:eyes:`
-
-## Maths
-
-> Go to [documentation](https://zensical.org/docs/authoring/math/)
-
-$$
-\cos x=\sum_{k=0}^{\infty}\frac{(-1)^k}{(2k)!}x^{2k}
-$$
-
-!!! warning "Needs configuration"
-    Note that MathJax is included via a `script` tag on this page and is not
-    configured in the generated default configuration to avoid including it
-    in a pages that do not need it. See the documentation for details on how
-    to configure it on all your pages if they are more Maths-heavy than these
-    simple starter pages.
-
-<script id="MathJax-script" src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script>
-  window.MathJax = {
-    tex: {
-      inlineMath: [["\\(", "\\)"]],
-      displayMath: [["\\[", "\\]"]],
-      processEscapes: true,
-      processEnvironments: true
-    },
-    options: {
-      ignoreHtmlClass: ".*|",
-      processHtmlClass: "arithmatex"
-    }
-  };
-
-  document$.subscribe(() => {
-    MathJax.startup.output.clearCache()
-    MathJax.typesetClear()
-    MathJax.texReset()
-    MathJax.typesetPromise()
-  })
-</script>
-
-## Task Lists
-
-> Go to [documentation](https://zensical.org/docs/authoring/lists/#using-task-lists)
-
-* [x] Install Zensical
-* [x] Configure `zensical.toml`
-* [x] Write amazing documentation
-* [ ] Deploy anywhere
-
-## Tooltips
-
-> Go to [documentation](https://zensical.org/docs/authoring/tooltips/)
-
-[Hover me][example]
-
-  [example]: https://example.com "I'm a tooltip!"
+Depois abra a URL exibida no terminal para navegar pela documentação.

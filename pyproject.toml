@@ -11,5 +11,5 @@ dependencies = [
 [dependency-groups]
 dev = [
     "mkdocs-jupyter>=0.25.1",
-    "zensical>=0.0.53",
+    "mkdocs-material>=9.7.7",
 ]

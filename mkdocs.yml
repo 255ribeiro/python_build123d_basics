@@ -34,29 +34,29 @@ repo_url: "https://github.com/255ribeiro/python_build123d_basics/"
 repo_name: "255ribeiro/python_build123d_basics" 
 
 nav:
-  - Home: index.md
+  - Início: index.md
 
   - Google Colab: 
-    - intro: ./tuto_colab_build/build123d_basic_gc.ipynb
-    - primitivas: ./tuto_colab_build/build123d_primitives_gc.ipynb
-    - treliças: ./tuto_colab_build/build123d_trusses_gc.ipynb
+    - Introdução: ./tuto_colab_build/build123d_basic_gc.ipynb
+    - Primitivas: ./tuto_colab_build/build123d_primitives_gc.ipynb
+    - Treliças: ./tuto_colab_build/build123d_trusses_gc.ipynb
     - Modelagem: ./tuto_colab_build/2d_to_3d.ipynb
-    - Exercício multi pav: ./tuto_colab_build/build123d_multiplos_pav.ipynb
-    - Exercício multi pav resolvido: ./tuto_colab_build/multi_pav_b3d_resolvido.ipynb
-    - Exercício multi pav perfil: ./tuto_colab_build/build123d_multiplos_pav_perfil.ipynb
+    - Exercício Multipavimentos: ./tuto_colab_build/build123d_multiplos_pav.ipynb
+    - Exercício Multipavimentos Resolvido: ./tuto_colab_build/multi_pav_b3d_resolvido.ipynb
+    - Exercício Multipavimentos com Perfil: ./tuto_colab_build/build123d_multiplos_pav_perfil.ipynb
     - Exercício pavimentos deslocados: ./tuto_colab_build/multi_pav_b3d_ramdom_disp_resolvido.ipynb
-    - Criando volumes com o loft: ./tuto_colab_build/multi_pav_loft.ipynb
+    - Criando Volumes com Loft: ./tuto_colab_build/multi_pav_loft.ipynb
     - Exportação IFC:
       - Exportação IFC: ./tuto_colab_build/step_to_ifc.ipynb
-      - Exportação IFC Mesh: ./tuto_colab_build/step_to_ifc_mesh.ipynb
+      - Exportação IFC em Malha: ./tuto_colab_build/step_to_ifc_mesh.ipynb
 
 
   - Apêndice:
     - Matrizes de transformação: ./conceitos/matrizes_de_transformacao.md
     - Geometria Descritiva vs. Projetiva: ./conceitos/descritiva_vs_projetiva.md
-    - Github Copiplot para professores e estudantes: ./conceitos/Resumo_GitHub_Copilot_Educacao_2026.md
+    - GitHub Copilot para professores e estudantes: ./conceitos/Resumo_GitHub_Copilot_Educacao_2026.md
 
-  - Downloads: ./down_files/down_files.md
+  - Arquivos para download: ./down_files/down_files.md
 
 markdown_extensions:
   - admonition
