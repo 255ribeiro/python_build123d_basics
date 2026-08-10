@@ -33,6 +33,7 @@ nav = [
   { "Apêndice: Geometria Descritiva vs. Projetiva" = "./conceitos/descritiva_vs_projetiva.md" },
   { "Apêndice: Github Copiplot para professores e estudantes" = "./conceitos/Resumo_GitHub_Copilot_Educacao_2026.md" },
   { Downloads = "./down_files/down_files.md" },
+  
 ]
 
 [project.theme]
