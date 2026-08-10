@@ -11,7 +11,7 @@ theme:
     #- navigation.tabs
   name: material   
   language: en-custom
-  custom_dir: docs\overrides
+  custom_dir: docs/overrides
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
