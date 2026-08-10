@@ -1,0 +1,975 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://255ribeiro.github.io/python_build123d_basics/conceitos/matrizes_de_transformacao.html">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.53">
+    
+    
+      
+        <title>Matrizes de Transformação 3D - Python Build123d para Arquitetos e Engenheiros</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/classic/main.39e53929.min.css">
+      
+        
+          
+        
+        <link rel="stylesheet" href="../assets/stylesheets/classic/palette.7dc9a0ad.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../overrides/css/extra_css.css">
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#matrizes-de-transformacao-3d" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Python Build123d para Arquitetos e Engenheiros" class="md-header__button md-logo" aria-label="Python Build123d para Arquitetos e Engenheiros" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Python Build123d para Arquitetos e Engenheiros
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Matrizes de Transformação 3D
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 6H7c-3.31 0-6 2.69-6 6s2.69 6 6 6h10c3.31 0 6-2.69 6-6s-2.69-6-6-6m0 10H7c-2.21 0-4-1.79-4-4s1.79-4 4-4h10c2.21 0 4 1.79 4 4s-1.79 4-4 4M7 9c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="orange" data-md-color-accent="deep-orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 7H7a5 5 0 0 0-5 5 5 5 0 0 0 5 5h10a5 5 0 0 0 5-5 5 5 0 0 0-5-5m0 8a3 3 0 0 1-3-3 3 3 0 0 1 3-3 3 3 0 0 1 3 3 3 3 0 0 1-3 3"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+        <a href="https://github.com/255ribeiro/python_build123d_basics/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    255ribeiro/python_build123d_basics
+  </div>
+</a>
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Python Build123d para Arquitetos e Engenheiros" class="md-nav__button md-logo" aria-label="Python Build123d para Arquitetos e Engenheiros" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Python Build123d para Arquitetos e Engenheiros
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/255ribeiro/python_build123d_basics/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    255ribeiro/python_build123d_basics
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-rocket" viewBox="0 0 24 24"><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09"/><path d="M9 12a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.4 22.4 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 .05 5 .05"/></svg>
+  
+  <span class="md-ellipsis">
+    
+  
+  Home
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tuto_colab_build/build123d_basic_gc.ipynb" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Google Colab: intro
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tuto_colab_build/build123d_primitives_gc.ipynb" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Google Colab: primitivas
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tuto_colab_build/build123d_trusses_gc.ipynb" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Google Colab: treliças
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tuto_colab_build/2d_to_3d.ipynb" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Google Colab: Modelagem
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tuto_colab_build/build123d_multiplos_pav.ipynb" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Google Colab: Exercício multi pav
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tuto_colab_build/multi_pav_b3d_resolvido.ipynb" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Google Colab: Exercício multi pav resolvido
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tuto_colab_build/build123d_multiplos_pav_perfil.ipynb" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Google Colab: Exercício multi pav perfil
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tuto_colab_build/multi_pav_b3d_ramdom_disp_resolvido.ipynb" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Google Colab: Exercício pavimentos deslocados
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tuto_colab_build/multi_pav_loft.ipynb" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Google Colab: Criando volumes com o loft
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tuto_colab_build/step_to_ifc.ipynb" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Google Colab: Exportação IFC
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tuto_colab_build/step_to_ifc_mesh.ipynb" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Google Colab: Exportação IFC Mesh
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./matrizes_de_transformacao.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Apêndice: Matrizes de transformação
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./descritiva_vs_projetiva.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Apêndice: Geometria Descritiva vs. Projetiva
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./Resumo_GitHub_Copilot_Educacao_2026.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Apêndice: Github Copiplot para professores e estudantes
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../down_files/down_files.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Downloads
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+
+
+
+                  
+  
+  
+
+
+<h1 id="matrizes-de-transformacao-3d">Matrizes de Transformação 3D</h1>
+<blockquote>
+<p>Base matemática aplicável a CadQuery, Blender, Rhino/Grasshopper e qualquer sistema de coordenadas 3D.</p>
+</blockquote>
+<hr />
+<h2 id="1-transformacoes-homogeneas">1. Transformações Homogêneas</h2>
+<p>Uma <a href="https://mathworld.wolfram.com/GeometricTransformation.html">transformação geométrica</a> é qualquer operação que mapeia pontos de um espaço em outros pontos do mesmo espaço. Quando essas transformações preservam retas (mas não necessariamente ângulos ou distâncias), elas são chamadas de <a href="https://mathworld.wolfram.com/AffineTransformation.html">transformações afins</a> — e incluem translação, rotação, escala e cisalhamento.</p>
+<p>O problema é que translação <strong>não é uma <a href="https://mathworld.wolfram.com/LinearTransformation.html">transformação linear</a></strong>: ela não pode ser expressa como multiplicação por uma matriz 3×3. Para resolver isso, utiliza-se o artifício das <strong><a href="https://mathworld.wolfram.com/HomogeneousCoordinates.html">coordenadas homogêneas</a></strong>: adiciona-se uma dimensão extra ao espaço, elevando um ponto 3D <code>(x, y, z)</code> à representação <code>(x, y, z, 1)</code> em R⁴.</p>
+<p>Nesse espaço aumentado, <strong>todas as transformações afins — incluindo translação — tornam-se multiplicações de matrizes 4×4</strong>. Isso é o que define uma <strong><a href="https://mathworld.wolfram.com/HomogeneousMatrix.html">transformação homogênea</a></strong>: a unificação de qualquer combinação de translação, rotação e escala em uma única matriz, aplicável em uma única operação de <a href="https://mathworld.wolfram.com/MatrixMultiplication.html">multiplicação matricial</a>.</p>
+<p>A consequência prática é poderosa: múltiplas transformações podem ser <strong>compostas</strong> (multiplicadas entre si) em uma única matriz <code>M</code> antes de serem aplicadas à geometria — economizando operações e eliminando ambiguidades de ordem.</p>
+<h3 id="estrutura-geral-da-matriz-44">Estrutura geral da matriz 4×4</h3>
+<div class="highlight"><pre><span></span><code>M = | r00  r01  r02  tx |
+    | r10  r11  r12  ty |
+    | r20  r21  r22  tz |
+    |  0    0    0    1 |
+</code></pre></div>
+<ul>
+<li>A <strong>submatriz 3×3 superior esquerda</strong> (<code>rij</code>) contém rotação e/ou escala</li>
+<li>A <strong>4ª coluna</strong> (<code>tx, ty, tz</code>) contém a translação</li>
+<li>A <strong>4ª linha</strong> é sempre <code>[0, 0, 0, 1]</code> para <a href="https://mathworld.wolfram.com/AffineTransformation.html">transformações afins</a></li>
+</ul>
+<p>A <a href="https://mathworld.wolfram.com/IdentityMatrix.html">matriz identidade</a> representa a ausência de qualquer transformação:</p>
+<div class="highlight"><pre><span></span><code>I = | 1  0  0  0 |
+    | 0  1  0  0 |
+    | 0  0  1  0 |
+    | 0  0  0  1 |
+</code></pre></div>
+<hr />
+<h2 id="2-translacao">2. Translação</h2>
+<p><a href="https://mathworld.wolfram.com/Translation.html">Translação</a> é mover um objeto no espaço sem alterar sua forma ou orientação. É a transformação mais simples, mas a única que exige coordenadas homogêneas para ser expressa matricialmente.</p>
+<div class="highlight"><pre><span></span><code>T(tx, ty, tz) = | 1  0  0  tx |
+                | 0  1  0  ty |
+                | 0  0  1  tz |
+                | 0  0  0   1 |
+</code></pre></div>
+<h3 id="exemplo">Exemplo</h3>
+<p>Transladar o ponto <code>P = (2, 3, 0)</code> por <code>(5, -1, 10)</code>:</p>
+<div class="highlight"><pre><span></span><code>| 1  0  0  5  |   | 2 |   | 7  |
+| 0  1  0 -1  | × | 3 | = | 2  |
+| 0  0  1  10 |   | 0 |   | 10 |
+| 0  0  0  1  |   | 1 |   | 1  |
+</code></pre></div>
+<h3 id="em-codigo">Em código</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># CadQuery</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span>
+    <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tx</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">ty</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">tz</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="mi">1</span><span class="p">]</span>
+<span class="p">])</span>
+<span class="n">shape</span><span class="o">.</span><span class="n">transformGeometry</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><span class="c1"># Blender (mathutils)</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mathutils</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">mathutils</span><span class="o">.</span><span class="n">Matrix</span><span class="o">.</span><span class="n">Translation</span><span class="p">((</span><span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">,</span> <span class="n">tz</span><span class="p">))</span>
+<span class="n">obj</span><span class="o">.</span><span class="n">matrix_world</span> <span class="o">=</span> <span class="n">m</span> <span class="o">@</span> <span class="n">obj</span><span class="o">.</span><span class="n">matrix_world</span>
+</code></pre></div>
+<hr />
+<h2 id="3-escala">3. Escala</h2>
+<p>A <a href="https://mathworld.wolfram.com/ScalingMatrix.html">escala</a> altera o tamanho do objeto em um ou mais eixos, sempre em relação à origem do sistema de coordenadas.</p>
+<h3 id="escala-uniforme-todos-os-eixos-iguais">Escala uniforme (todos os eixos iguais)</h3>
+<div class="highlight"><pre><span></span><code>S(s) = | s  0  0  0 |
+       | 0  s  0  0 |
+       | 0  0  s  0 |
+       | 0  0  0  1 |
+</code></pre></div>
+<h3 id="escala-nao-uniforme-eixos-independentes">Escala não-uniforme (eixos independentes)</h3>
+<div class="highlight"><pre><span></span><code>S(sx, sy, sz) = | sx  0   0   0 |
+                |  0  sy  0   0 |
+                |  0   0  sz  0 |
+                |  0   0   0  1 |
+</code></pre></div>
+<p>Configurar <code>sz = 1</code> mantém a altura intacta enquanto XY é escalado — exatamente o caso de uso do algoritmo de pavimentos apresentado neste material.</p>
+<h3 id="importante-escala-e-ordem-de-operacoes">Importante: escala e ordem de operações</h3>
+<p>Como a escala opera em relação à origem, um objeto fora da origem será também <strong>movido</strong> ao ser escalado. A ordem correta de operações é sempre:</p>
+<div class="highlight"><pre><span></span><code>1. Posicionar na origem
+2. Aplicar escala
+3. Aplicar rotação
+4. Aplicar translação final
+</code></pre></div>
+<p>Ou em <a href="https://mathworld.wolfram.com/MatrixMultiplication.html">notação matricial</a> (lida da direita para a esquerda):</p>
+<div class="highlight"><pre><span></span><code>M = T × R × S
+</code></pre></div>
+<hr />
+<h2 id="4-rotacao">4. Rotação</h2>
+<h3 id="41-rotacao-em-torno-dos-eixos-canonicos">4.1 Rotação em torno dos eixos canônicos</h3>
+<p>As <a href="https://mathworld.wolfram.com/RotationMatrix.html">matrizes de rotação</a> em torno dos eixos canônicos são derivadas diretamente da geometria do <a href="https://mathworld.wolfram.com/UnitCircle.html">círculo unitário</a>, usando seno e cosseno para projetar o ângulo <code>θ</code> nos eixos perpendiculares.</p>
+<p><strong>Rotação em torno de Z (<a href="https://en.wikipedia.org/wiki/Aircraft_principal_axes">yaw</a>):</strong>
+<div class="highlight"><pre><span></span><code>Rz(θ) = | cos θ  -sin θ  0  0 |
+         | sin θ   cos θ  0  0 |
+         |   0       0    1  0 |
+         |   0       0    0  1 |
+</code></pre></div></p>
+<p><strong>Rotação em torno de X (<a href="https://en.wikipedia.org/wiki/Aircraft_principal_axes">pitch</a>):</strong>
+<div class="highlight"><pre><span></span><code>Rx(θ) = | 1    0       0    0 |
+         | 0  cos θ  -sin θ  0 |
+         | 0  sin θ   cos θ  0 |
+         | 0    0       0    1 |
+</code></pre></div></p>
+<p><strong>Rotação em torno de Y (<a href="https://en.wikipedia.org/wiki/Aircraft_principal_axes">roll</a>):</strong>
+<div class="highlight"><pre><span></span><code>Ry(θ) = |  cos θ  0  sin θ  0 |
+         |    0    1    0    0 |
+         | -sin θ  0  cos θ  0 |
+         |    0    0    0    1 |
+</code></pre></div></p>
+<h3 id="42-o-problema-gimbal-lock">4.2 O problema: Gimbal Lock</h3>
+<p>Quando rotações são aplicadas sequencialmente em eixos fixos (convenção de <a href="https://mathworld.wolfram.com/EulerAngles.html">ângulos de Euler</a>), surge o <strong><a href="https://en.wikipedia.org/wiki/Gimbal_lock">Gimbal Lock</a></strong> (travamento de cardan): quando dois dos três eixos de rotação se alinham, <strong>um grau de liberdade é perdido</strong>.</p>
+<p>Imagine três aros concêntricos (um <a href="https://en.wikipedia.org/wiki/Gimbal">cardan mecânico</a>): cada aro representa um eixo de rotação. Quando o aro intermediário gira 90°, o aro interno e o externo ficam no mesmo plano — e o sistema perde um eixo de controle. Qualquer rotação tentada no eixo "perdido" simplesmente duplica outro eixo existente.</p>
+<p><strong>Consequências práticas:</strong></p>
+<ul>
+<li>Animações com interpolação de Euler apresentam saltos e rotações inesperadas</li>
+<li>Objetos em certas orientações se recusam a rotacionar no eixo desejado</li>
+<li>O problema é <strong>intrínseco à representação</strong>, não um bug de software</li>
+</ul>
+<p><strong>Como identificar:</strong></p>
+<p>No Blender, Rhino ou qualquer editor 3D: rotacione um objeto até que dois eixos do gizmo (manipulador de rotação) fiquem coplanares — o objeto passará a rotacionar de forma estranha em torno desses eixos.</p>
+<h3 id="43-a-solucao-quaternions">4.3 A solução: Quaternions</h3>
+<p>Um <a href="https://mathworld.wolfram.com/Quaternion.html">quaternion</a> é uma extensão dos <a href="https://mathworld.wolfram.com/ComplexNumber.html">números complexos</a> com quatro componentes, introduzido por William Rowan Hamilton em 1843:</p>
+<div class="highlight"><pre><span></span><code>q = w + xi + yj + zk
+</code></pre></div>
+<p>Onde:
+- <code>w</code> é a parte escalar (real)
+- <code>x, y, z</code> são as partes vetoriais (imaginárias)
+- <code>i, j, k</code> são <a href="https://mathworld.wolfram.com/ImaginaryUnit.html">unidades imaginárias</a> com as propriedades:
+  <div class="highlight"><pre><span></span><code>i² = j² = k² = ijk = -1
+</code></pre></div></p>
+<h3 id="quaternion-de-rotacao">Quaternion de rotação</h3>
+<p>Para representar uma <a href="https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation">rotação por quaternion</a> de ângulo <code>θ</code> em torno de um <a href="https://mathworld.wolfram.com/UnitVector.html">vetor unitário</a> <code>(ax, ay, az)</code>:</p>
+<div class="highlight"><pre><span></span><code>w = cos(θ/2)
+x = ax × sin(θ/2)
+y = ay × sin(θ/2)
+z = az × sin(θ/2)
+</code></pre></div>
+<p>Um quaternion de rotação válido é sempre <strong><a href="https://mathworld.wolfram.com/UnitQuaternion.html">unitário</a></strong>: <code>w² + x² + y² + z² = 1</code></p>
+<h3 id="por-que-quaternions-resolvem-o-gimbal-lock">Por que quaternions resolvem o Gimbal Lock?</h3>
+<p>Quaternions representam rotações como <strong>uma única operação no <a href="https://mathworld.wolfram.com/Four-DimensionalSpace.html">espaço 4D</a></strong>, sem decompor em eixos sequenciais. Como não há sequência de eixos, não há como dois deles se alinharem — o <a href="https://en.wikipedia.org/wiki/Gimbal_lock">Gimbal Lock</a> simplesmente não existe nessa representação.</p>
+<p>Além disso, quaternions permitem <strong>interpolação suave</strong> entre duas orientações através da operação <strong><a href="https://en.wikipedia.org/wiki/Slerp">SLERP</a></strong> (Spherical Linear Interpolation):</p>
+<div class="highlight"><pre><span></span><code>slerp(q1, q2, t) = q1 × (q1⁻¹ × q2)^t,   t ∈ [0, 1]
+</code></pre></div>
+<p>SLERP garante velocidade angular constante ao longo do caminho mais curto entre duas orientações — impossível com Euler sem artefatos.</p>
+<h3 id="conversao-quaternion-matriz-44">Conversão quaternion → matriz 4×4</h3>
+<div class="highlight"><pre><span></span><code>R = | 1-2(y²+z²)   2(xy-wz)    2(xz+wy)   0 |
+    |  2(xy+wz)   1-2(x²+z²)   2(yz-wx)   0 |
+    |  2(xz-wy)    2(yz+wx)   1-2(x²+y²)  0 |
+    |     0            0           0       1 |
+</code></pre></div>
+<h3 id="44-como-evitar-o-gimbal-lock-na-pratica">4.4 Como evitar o Gimbal Lock na prática</h3>
+<table>
+<thead>
+<tr>
+<th>Programa</th>
+<th>Solução</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Blender</strong></td>
+<td>Usar modo de rotação <strong>Quaternion</strong> no painel de propriedades do objeto (N panel → Item → Rotation Mode)</td>
+</tr>
+<tr>
+<td><strong>Rhino/Grasshopper</strong></td>
+<td>Usar o componente <code>Rotate</code> com eixo arbitrário em vez de rotações sequenciais XYZ</td>
+</tr>
+<tr>
+<td><strong>CadQuery</strong></td>
+<td><code>.rotate(ponto_eixo1, ponto_eixo2, angulo)</code> opera sobre um eixo arbitrário — internamente usa quaternion</td>
+</tr>
+<tr>
+<td><strong>Qualquer programa</strong></td>
+<td>Preferir rotações em torno de um <strong>eixo arbitrário</strong> em vez de compor rotações X + Y + Z separadas</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="5-composicao-de-transformacoes">5. Composição de Transformações</h2>
+<p>A grande vantagem das <a href="https://mathworld.wolfram.com/HomogeneousMatrix.html">matrizes homogêneas</a> é a <strong>composição</strong>: qualquer sequência de transformações pode ser <a href="https://mathworld.wolfram.com/MatrixMultiplication.html">multiplicada</a> em uma única matriz <code>M</code>, aplicada de uma vez à geometria.</p>
+<div class="highlight"><pre><span></span><code>M = T × R × S
+</code></pre></div>
+<p><strong>Atenção:</strong> a <a href="https://mathworld.wolfram.com/MatrixMultiplication.html">multiplicação de matrizes</a> <strong>não é <a href="https://mathworld.wolfram.com/Commutative.html">comutativa</a></strong> — a ordem importa.</p>
+<div class="highlight"><pre><span></span><code>T × R ≠ R × T
+</code></pre></div>
+<p>Transladar depois de rotacionar produz resultado diferente de rotacionar depois de transladar. A convenção mais comum (e intuitiva) é:</p>
+<div class="highlight"><pre><span></span><code>1. Scale   (S) — dimensionar em torno da origem
+2. Rotate  (R) — orientar em torno da origem
+3. Translate (T) — posicionar no mundo
+</code></pre></div>
+<h3 id="exemplo-combinado-em-cadquery">Exemplo combinado em CadQuery</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">cadquery</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cq</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Parâmetros</span>
+<span class="n">sx</span><span class="p">,</span> <span class="n">sy</span><span class="p">,</span> <span class="n">sz</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span>   <span class="c1"># escala XY dupla, Z intacto</span>
+<span class="n">angulo</span> <span class="o">=</span> <span class="mi">45</span>                    <span class="c1"># graus</span>
+<span class="n">tx</span><span class="p">,</span> <span class="n">ty</span><span class="p">,</span> <span class="n">tz</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span>         <span class="c1"># translação</span>
+
+<span class="n">rad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">angulo</span><span class="p">)</span>
+<span class="n">cos</span><span class="p">,</span> <span class="n">sin</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">rad</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">rad</span><span class="p">)</span>
+
+<span class="c1"># Matriz composta M = T × Rz × S</span>
+<span class="n">m</span> <span class="o">=</span> <span class="n">cq</span><span class="o">.</span><span class="n">Matrix</span><span class="p">([</span>
+    <span class="p">[</span><span class="n">sx</span><span class="o">*</span><span class="n">cos</span><span class="p">,</span> <span class="o">-</span><span class="n">sy</span><span class="o">*</span><span class="n">sin</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="n">tx</span><span class="p">],</span>
+    <span class="p">[</span><span class="n">sx</span><span class="o">*</span><span class="n">sin</span><span class="p">,</span>  <span class="n">sy</span><span class="o">*</span><span class="n">cos</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="n">ty</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span>       <span class="mi">0</span><span class="p">,</span>      <span class="n">sz</span><span class="p">,</span> <span class="n">tz</span><span class="p">],</span>
+    <span class="p">[</span><span class="mi">0</span><span class="p">,</span>       <span class="mi">0</span><span class="p">,</span>      <span class="mi">0</span><span class="p">,</span>   <span class="mi">1</span><span class="p">]</span>
+<span class="p">])</span>
+
+<span class="n">shape_transformado</span> <span class="o">=</span> <span class="n">shape</span><span class="o">.</span><span class="n">transformGeometry</span><span class="p">(</span><span class="n">m</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="6-resumo-visual">6. Resumo Visual</h2>
+<div class="highlight"><pre><span></span><code>Translação            Escala                Rotação Z
+| 1  0  0  tx |      | sx  0   0   0 |     | cos -sin  0  0 |
+| 0  1  0  ty |      |  0  sy  0   0 |     | sin  cos  0  0 |
+| 0  0  1  tz |      |  0   0  sz  0 |     |  0    0   1  0 |
+| 0  0  0   1 |      |  0   0   0  1 |     |  0    0   0  1 |
+
+Identidade
+| 1  0  0  0 |
+| 0  1  0  0 |
+| 0  0  1  0 |
+| 0  0  0  1 |
+</code></pre></div>
+<hr />
+<h2 id="7-referencias">7. Referências</h2>
+<ul>
+<li><a href="https://mathworld.wolfram.com/GeometricTransformation.html">Geometric Transformation</a> — MathWorld</li>
+<li><a href="https://mathworld.wolfram.com/AffineTransformation.html">Affine Transformation</a> — MathWorld</li>
+<li><a href="https://mathworld.wolfram.com/LinearTransformation.html">Linear Transformation</a> — MathWorld</li>
+<li><a href="https://mathworld.wolfram.com/HomogeneousCoordinates.html">Homogeneous Coordinates</a> — MathWorld</li>
+<li><a href="https://mathworld.wolfram.com/HomogeneousMatrix.html">Homogeneous Matrix</a> — MathWorld</li>
+<li><a href="https://mathworld.wolfram.com/RotationMatrix.html">Rotation Matrix</a> — MathWorld</li>
+<li><a href="https://mathworld.wolfram.com/ScalingMatrix.html">Scaling Matrix</a> — MathWorld</li>
+<li><a href="https://mathworld.wolfram.com/EulerAngles.html">Euler Angles</a> — MathWorld</li>
+<li><a href="https://mathworld.wolfram.com/Quaternion.html">Quaternion</a> — MathWorld</li>
+<li><a href="https://mathworld.wolfram.com/UnitQuaternion.html">Unit Quaternion</a> — MathWorld</li>
+<li><a href="https://mathworld.wolfram.com/IdentityMatrix.html">Identity Matrix</a> — MathWorld</li>
+<li><a href="https://en.wikipedia.org/wiki/Gimbal_lock">Gimbal Lock</a> — Wikipedia</li>
+<li><a href="https://en.wikipedia.org/wiki/Quaternions_and_spatial_rotation">Quaternions and spatial rotation</a> — Wikipedia</li>
+<li><a href="https://en.wikipedia.org/wiki/Slerp">SLERP</a> — Wikipedia</li>
+<li><a href="https://en.wikipedia.org/wiki/Aircraft_principal_axes">Aircraft principal axes (yaw/pitch/roll)</a> — Wikipedia</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2026 Fernando Ferraz Ribeiro
+    </div>
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":["toc.integrate"],"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.69c251d7.min.js"></script>
+      
+    
+  </body>
+</html>

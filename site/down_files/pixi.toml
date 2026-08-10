@@ -1,0 +1,45 @@
+[workspace]
+authors = ["Fernando Ferraz Ribeiro <ffribeiro@gmail.com>"]
+channels = ["cadquery", "conda-forge"]
+name = "cadquery_basics"
+platforms = ["win-64","osx-arm64","osx-64","linux-64"]
+version = "0.1.0"
+
+[tasks]
+mkup ={ cmd = "mkdocs gh-deploy" }
+mksrv ={ cmd = "mkdocs serve" }
+pytonb = {cmd = "jupytext --to notebook "}
+nbtopy = {cmd ="jupytext --to py:percent "}
+
+[dependencies]
+python = "3.12.*"
+ipykernel = ">=7.2.0,<8"
+numpy = ">=2.4.2,<3"
+pip = ">=26.0.1,<27"
+ipywidgets = ">=8.1.8,<9"
+ezdxf = ">=1.4.2,<2"
+mkdocs = "==1.5.3"
+mkdocs-jupyter = ">=0.24.6,<0.25"
+pymdown-extensions = ">=10.21,<11"
+mkdocs-material = ">=9.5.20,<10"
+shapely = ">=2.1.2,<3"
+ifcopenshell = ">=0.8.4,<0.9"
+pythonocc-core = ">=7.7,<8"
+
+
+[target.linux-64.dependencies]
+cadquery = "*"
+
+[pypi-dependencies]
+cadquery = ">=2.3.0, <3"
+jupyter-cadquery = ">=1.0.0, <2"
+ocp-vscode = "==3.1.2"
+cadquery-simpleviewer = ">=0.2.3"
+jupytext = "*"
+
+
+
+
+
+
+
