@@ -1,8 +1,8 @@
-# %% [markdown]
+﻿# %% [markdown]
 # [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/255ribeiro/cadquery_basics/blob/master/docs/tuto_colab_build/multi_pav_b3d_ramdom_disp_resolvido.ipynb)
 
 # %% [markdown]
-# # Exercício resolvido: Pavimentos deslocados
+# # ExercÃ­cio resolvido: Pavimentos deslocados
 # ## Fernando Ferraz Rbeiro
 #
 #
@@ -10,7 +10,7 @@
 #
 
 # %% [markdown]
-# #### Instalação dos pacotes
+# #### InstalaÃ§Ã£o dos pacotes
 
 # %%
 import sys
@@ -23,12 +23,12 @@ else:
     print("Not running in Colab, skipping package installation.")
 
 # %% [markdown]
-# ### Importação dos pacotes
+# ### ImportaÃ§Ã£o dos pacotes
 
 # %%
 import itertools
 from build123d import *
-from build123d_simpleviewer import show
+from cadquery_simple_viewer import show
 import numpy as np
 
 
@@ -44,7 +44,7 @@ displace_dir = np.array([-1, 0, 1])
 lista_pav = []
 for i in range(n_pav + 1):
 
-  # direções de deslocamento
+  # direÃ§Ãµes de deslocamento
   dir_x = np.random.choice(displace_dir) * displace
   # dir_y = np.random.choice(displace_dir) * displace
 
@@ -70,10 +70,11 @@ assy = Compound(children=lista_pav)
 # Exporta o Compound para um arquivo STEP
 export_step(assy, "output.step")
 
-# Alternativa: unir (fundir) os sólidos com "+" antes de exportar,
+# Alternativa: unir (fundir) os sÃ³lidos com "+" antes de exportar,
 # equivalente ao mode="fused" do cq.Assembly.export() do CadQuery
 # fused = lista_pav[0]
 # for pav in lista_pav[1:]:
 #     fused = fused + pav
 # export_step(fused, "output.step")
+
 

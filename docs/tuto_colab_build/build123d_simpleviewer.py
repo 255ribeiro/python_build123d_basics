@@ -1,4 +1,4 @@
-"""
+﻿"""
 Minimal Plotly-based 3D viewer for build123d objects, used in the
 tuto_colab_build notebooks (Google Colab environment).
 
@@ -8,12 +8,12 @@ built specifically around CadQuery's own types (cq.Workplane, cq.Shape,
 cq.Edge, cq.Wire, cq.Vector), so it cannot render build123d objects as-is.
 Since there is no equivalent package published for build123d, this module
 is shipped as a plain .py file next to the notebooks instead of a pip
-package — the install cell in each notebook downloads it directly from
+package â€” the install cell in each notebook downloads it directly from
 the course repository when running in Colab.
 
 Usage is identical to the CadQuery version:
 
-    from build123d_simpleviewer import show
+    from cadquery_simple_viewer import show
     show(my_part)
     show([part_a, part_b], names=["A", "B"], z=0)
 """
@@ -46,7 +46,7 @@ _VALID_AXES = {None, "x", "y", "z", "xy", "xz", "yz", "xyz"}
 _EQUAL_ASPECT = dict(x=1, y=1, z=1)
 
 
-# ── type detection ────────────────────────────────────────────────────────────
+# â”€â”€ type detection â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 def _is_point(obj):
     """
@@ -70,7 +70,7 @@ def _is_wire(obj):
     return isinstance(obj, bd.Wire)
 
 
-# ── coordinate extraction ─────────────────────────────────────────────────────
+# â”€â”€ coordinate extraction â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 def _point_to_xyz(obj):
     """Extract (x, y, z) from a Vector/Vertex or a [x, y, z] list/tuple."""
@@ -88,7 +88,7 @@ def _sample_edge(edge, samples):
 
     position_at(t) follows the actual curve geometry for any edge type:
     straight lines, arcs, ellipses, splines, helices, B-splines, etc.
-    The 'samples' parameter controls resolution — more samples = smoother
+    The 'samples' parameter controls resolution â€” more samples = smoother
     curves but larger traces.
 
     Returns three lists: x, y, z.
@@ -139,7 +139,7 @@ def _sample_wire(wire, samples):
     return x, y, z
 
 
-# ── axis style ────────────────────────────────────────────────────────────────
+# â”€â”€ axis style â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 def _axis_style(visible: bool) -> dict:
     """
@@ -177,8 +177,8 @@ def _axes_from_string(visible_axes):
     """
     Parse visible_axes and return three booleans (show_x, show_y, show_z).
 
-    None  → all axes hidden
-    "xyz" → all axes visible (the default parameter value)
+    None  â†’ all axes hidden
+    "xyz" â†’ all axes visible (the default parameter value)
     """
     if visible_axes is None:
         return False, False, False
@@ -195,16 +195,16 @@ def _axes_from_string(visible_axes):
     return "x" in key, "y" in key, "z" in key
 
 
-# ── trace building ────────────────────────────────────────────────────────────
+# â”€â”€ trace building â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 def _build_traces(objects, names, colors, opacity,
                   tessellation_tolerance, points_display, lines_display):
     """
     Build Plotly traces from a mixed list of objects.
 
-    build123d solid (Part/Solid/Compound/Sketch/Face) → go.Mesh3d (tessellated)
-    Edge / Wire                                       → go.Scatter3d (sampled lines)
-    Vector / Vertex / [x, y, z]                       → go.Scatter3d (markers)
+    build123d solid (Part/Solid/Compound/Sketch/Face) â†’ go.Mesh3d (tessellated)
+    Edge / Wire                                       â†’ go.Scatter3d (sampled lines)
+    Vector / Vertex / [x, y, z]                       â†’ go.Scatter3d (markers)
 
     Returns (traces, all_x, all_y, all_z) where the coordinate lists span
     all objects for bounding box computation.
@@ -233,7 +233,7 @@ def _build_traces(objects, names, colors, opacity,
         obj  = objects[index]
         name = names[index] if names else "Object " + str(index + 1)
 
-        # ── Edge ──────────────────────────────────────────────────────────
+        # â”€â”€ Edge â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         if _is_edge(obj):
             x, y, z = _sample_edge(obj, samples)
 
@@ -254,7 +254,7 @@ def _build_traces(objects, names, colors, opacity,
                 showlegend=True,
             ))
 
-        # ── Wire ──────────────────────────────────────────────────────────
+        # â”€â”€ Wire â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         elif _is_wire(obj):
             x, y, z = _sample_wire(obj, samples)
 
@@ -274,7 +274,7 @@ def _build_traces(objects, names, colors, opacity,
                 showlegend=True,
             ))
 
-        # ── Point ─────────────────────────────────────────────────────────
+        # â”€â”€ Point â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         elif _is_point(obj):
             px, py, pz = _point_to_xyz(obj)
             all_x.append(px)
@@ -294,7 +294,7 @@ def _build_traces(objects, names, colors, opacity,
                 showlegend=True,
             ))
 
-        # ── build123d solid (Part / Solid / Compound / Sketch / Face) ──────
+        # â”€â”€ build123d solid (Part / Solid / Compound / Sketch / Face) â”€â”€â”€â”€â”€â”€
         else:
             vertices, triangles = obj.tessellate(tessellation_tolerance)
 
@@ -338,7 +338,7 @@ def _build_traces(objects, names, colors, opacity,
     return traces, all_x, all_y, all_z
 
 
-# ── range helpers ─────────────────────────────────────────────────────────────
+# â”€â”€ range helpers â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 def _equal_ranges(xmin, xmax, ymin, ymax, zmin, zmax, padding):
     """
@@ -426,7 +426,7 @@ def _base_plane(size: float, color: str, opacity: float, z: float):
     )
 
 
-# ── UI controls ───────────────────────────────────────────────────────────────
+# â”€â”€ UI controls â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 def _make_axis_toggle(label, scene_key, initial_visible, val_range, x_pos):
     """Build an on/off button pair for one axis."""
@@ -447,12 +447,12 @@ def _make_axis_toggle(label, scene_key, initial_visible, val_range, x_pos):
         font=dict(size=11),
         buttons=[
             dict(
-                label=f"{label} ●",
+                label=f"{label} â—",
                 method="relayout",
                 args=[{f"scene.{scene_key}": on_dict}]
             ),
             dict(
-                label=f"{label} ○",
+                label=f"{label} â—‹",
                 method="relayout",
                 args=[{f"scene.{scene_key}": off_dict}]
             ),
@@ -509,7 +509,7 @@ def _make_camera_menu(x_pos):
     )
 
 
-# ── public API ────────────────────────────────────────────────────────────────
+# â”€â”€ public API â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 def show(
     objects,
@@ -530,44 +530,44 @@ def show(
     Display one or more build123d objects as an interactive 3D Plotly figure.
 
     Accepts a mixed list of object types in any combination:
-      - build123d solid (Part, Solid, Compound, Sketch, Face) → tessellated mesh
-      - build123d Edge / Wire     → sampled line (works with straight lines,
+      - build123d solid (Part, Solid, Compound, Sketch, Face) â†’ tessellated mesh
+      - build123d Edge / Wire     â†’ sampled line (works with straight lines,
                                     arcs, ellipses, splines, helices, etc.)
-      - build123d Vector / Vertex / [x, y, z] → point marker
+      - build123d Vector / Vertex / [x, y, z] â†’ point marker
 
     Equal scale is enforced: 1 unit in X occupies the same screen distance
     as 1 unit in Y or Z, in both perspective and orthographic modes.
 
     Parameters
     ----------
-    objects                 : object or list — any mix of build123d solids,
+    objects                 : object or list â€” any mix of build123d solids,
                               Edge, Wire, Vector/Vertex, or [x, y, z] lists
     names                   : list of legend labels (optional)
-    colors                  : list of face colors for mesh objects —
+    colors                  : list of face colors for mesh objects â€”
                               see https://plotly.com/python/css-colors/
-    opacity                 : solid opacity for mesh objects — 1.0 = fully opaque
-    visible_axes            : initial axes visibility —
+    opacity                 : solid opacity for mesh objects â€” 1.0 = fully opaque
+    visible_axes            : initial axes visibility â€”
                               None = no axes, "x"/"y"/"z"/"xy"/"xz"/"yz"/"xyz" (default)
     z                       : elevation of the base plane; None = no plane (default)
     plane_color             : color of the base plane
     plane_size              : half-side length of the base plane quad
     plane_opacity           : opacity of the base plane
-    tessellation_tolerance  : mesh precision — smaller = finer, slower
+    tessellation_tolerance  : mesh precision â€” smaller = finer, slower
     padding                 : fraction of bounding box span added as axis margin
     points_display          : dict to configure point markers. Keys (all optional):
-                                size    — marker size in pixels (default 5)
-                                color   — marker color (default "red")
-                                symbol  — "circle", "square", "diamond",
+                                size    â€” marker size in pixels (default 5)
+                                color   â€” marker color (default "red")
+                                symbol  â€” "circle", "square", "diamond",
                                           "cross", "x", "circle-open" (default "circle")
-                                opacity — marker opacity (default 1.0)
+                                opacity â€” marker opacity (default 1.0)
     lines_display           : dict to configure edge/wire lines. Keys (all optional):
-                                color   — line color (default "red")
-                                width   — line width in pixels (default 2)
-                                mode    — "lines" or "lines+markers" (default "lines")
-                                samples — number of points sampled along each edge
+                                color   â€” line color (default "red")
+                                width   â€” line width in pixels (default 2)
+                                mode    â€” "lines" or "lines+markers" (default "lines")
+                                samples â€” number of points sampled along each edge
                                           (default 50). Increase for tight curves,
                                           helices, or complex splines.
-                                opacity — line opacity (default 1.0)
+                                opacity â€” line opacity (default 1.0)
     """
     show_x, show_y, show_z = _axes_from_string(visible_axes)
 
@@ -630,3 +630,4 @@ def show(
     )
 
     fig.show()
+
