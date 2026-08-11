@@ -17,7 +17,7 @@ Este repositório reúne exemplos práticos para:
 
 ## Pré-requisitos
 
-- Python 3.12 ou superior
+- Python 3.12.x
 - Ambiente virtual Python (`.venv`)
 - Dependências do projeto instaladas com `uv sync --dev`
 - MkDocs Material e plugin `mkdocs-jupyter` para renderização dos notebooks
@@ -25,8 +25,22 @@ Este repositório reúne exemplos práticos para:
 Comandos recomendados:
 
 ```bash
+uv python pin 3.12
+uv venv --seed
 uv sync --dev
 mkdocs serve -f mkdocs.yml
+```
+
+Para executar notebooks localmente no VS Code com kernel estável:
+
+```bash
+uv sync --dev --group notebook
+```
+
+Para os notebooks de IFC (`step_to_ifc*`), instale também:
+
+```bash
+uv sync --dev --group notebook --group ifc
 ```
 
 ## Trilha sugerida

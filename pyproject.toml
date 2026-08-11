@@ -3,15 +3,26 @@ name = "python-build123d-basics"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.12,<3.13"
 dependencies = [
     "build123d>=0.11.1",
     "cadquery-simpleviewer==0.3.0",
+    "ezdxf>=1.4.2",
     "ipykernel>=7.3.0",
+    "numpy>=2.1.0",
 ]
 
 [dependency-groups]
 dev = [
+    "jupytext>=1.17.2",
     "mkdocs-jupyter>=0.25.1",
     "mkdocs-material>=9.7.7",
+]
+notebook = [
+    "jupyter>=1.1.1",
+    "nbclient>=0.10.2",
+]
+ifc = [
+    "ifcopenshell>=0.8.4",
+    "shapely>=2.1.2",
 ]

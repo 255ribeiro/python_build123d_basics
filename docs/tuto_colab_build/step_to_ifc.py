@@ -23,7 +23,7 @@ if IN_COLAB:
     print("Running in Colab — installing packages …")
     import subprocess
     subprocess.run([sys.executable, "-m", "pip", "install",
-                    "pythonocc-core", "ifcopenshell", "shapely"], check=True)
+                    "cadquery-ocp", "ifcopenshell", "shapely"], check=True)
 else:
     print("Local environment — skipping installation.")
 
@@ -37,18 +37,18 @@ import numpy as np
 from shapely.geometry import Polygon
 from shapely.ops import unary_union
 
-# OCC geometry analysis
-from OCC.Core.BRepAdaptor import BRepAdaptor_Surface
-from OCC.Core.GeomAbs    import GeomAbs_Plane
-from OCC.Core.TopExp     import TopExp_Explorer
-from OCC.Core.TopAbs     import TopAbs_FACE, TopAbs_REVERSED, TopAbs_SOLID
-from OCC.Core.BRepTools  import breptools, BRepTools_WireExplorer
-from OCC.Core.BRep       import BRep_Tool
-from OCC.Core.TopoDS     import topods
+# OCP geometry analysis
+from OCP.BRepAdaptor import BRepAdaptor_Surface
+from OCP.GeomAbs     import GeomAbs_Plane
+from OCP.TopExp      import TopExp_Explorer
+from OCP.TopAbs      import TopAbs_FACE, TopAbs_REVERSED, TopAbs_SOLID
+from OCP.BRepTools   import BRepTools, BRepTools_WireExplorer
+from OCP.BRep        import BRep_Tool
+from OCP.TopoDS      import TopoDS
 
-# OCC STEP reader
-from OCC.Core.STEPControl import STEPControl_Reader
-from OCC.Core.IFSelect    import IFSelect_RetDone
+# OCP STEP reader
+from OCP.STEPControl import STEPControl_Reader
+from OCP.IFSelect    import IFSelect_RetDone
 
 # %% [markdown]
 # ### Parameters
@@ -69,7 +69,7 @@ def get_boundary_points(face):
     Ordered XYZ vertices of the outer wire of a planar face.
     Uses BRepTools_WireExplorer which follows edge connectivity.
     """
-    wire = breptools.OuterWire(face)
+    wire = BRepTools.OuterWire_s(face)
     pts  = []
     exp  = BRepTools_WireExplorer(wire)
     while exp.More():
@@ -108,7 +108,7 @@ def classify_faces(solid):
     horiz, walls = [], []
 
     while exp.More():
-        face = topods.Face(exp.Current())
+        face = TopoDS.Face_s(exp.Current())
         surf = BRepAdaptor_Surface(face)
 
         if surf.GetType() != GeomAbs_Plane:
@@ -158,7 +158,7 @@ shape = reader.Shape()
 exp = TopExp_Explorer(shape, TopAbs_SOLID)
 solids = []
 while exp.More():
-    solids.append(topods.Solid(exp.Current()))
+    solids.append(TopoDS.Solid_s(exp.Current()))
     exp.Next()
 
 def _bottom_z(solid):
@@ -206,9 +206,9 @@ site.ObjectPlacement     = make_placement(model)
 building.ObjectPlacement = make_placement(model)
 
 ifcopenshell.api.run("aggregate.assign_object", model,
-    relating_object=project,  product=site)
+    relating_object=project,  products=[site])
 ifcopenshell.api.run("aggregate.assign_object", model,
-    relating_object=site,     product=building)
+    relating_object=site,     products=[building])
 
 print("IFC hierarchy: Project → Site → Building  ✓")
 
@@ -269,7 +269,7 @@ def create_floor_slab(model, ctx, polygon, z_top, thickness, slab_type):
     slab.Representation  = prod_rep
 
     ifcopenshell.api.run("type.assign_type", model,
-        related_object=slab, relating_type=slab_type)
+        related_objects=[slab], relating_type=slab_type)
     return slab
 
 
@@ -295,7 +295,7 @@ def create_wall(model, ctx, pts_3d, wall_type):
     wall.Representation  = prod_rep
 
     ifcopenshell.api.run("type.assign_type", model,
-        related_object=wall, relating_type=wall_type)
+        related_objects=[wall], relating_type=wall_type)
 
     # Pset_WallCommon — nominal thickness so BIM tools can read it
     try:
@@ -329,7 +329,7 @@ for i, solid in enumerate(solids_sorted):
     storey.Elevation       = float(bottom_z)
     storey.ObjectPlacement = make_placement(model, z=bottom_z)
     ifcopenshell.api.run("aggregate.assign_object", model,
-        relating_object=building, product=storey)
+        relating_object=building, products=[storey])
 
     # ── Floor slab ────────────────────────────────────────────────────────────
     # Current bottom face (XY outline at bottom_z)
@@ -346,7 +346,7 @@ for i, solid in enumerate(solids_sorted):
         slab = create_floor_slab(model, ctx_body,
             floor_poly, bottom_z, FLOOR_THICKNESS, floor_type)
         ifcopenshell.api.run("spatial.assign_container", model,
-            relating_structure=storey, product=slab)
+            relating_structure=storey, products=[slab])
 
         print(f"  IfcSlab  (floor)   z={bottom_z:.2f} m  "
               f"area={floor_poly.area:.2f} m²")
@@ -357,7 +357,7 @@ for i, solid in enumerate(solids_sorted):
         if len(pts) >= 3:
             wall = create_wall(model, ctx_body, pts, wall_type)
             ifcopenshell.api.run("spatial.assign_container", model,
-                relating_structure=storey, product=wall)
+                relating_structure=storey, products=[wall])
 
     print(f"  IfcWall × {len(faces['walls'])}")
 
@@ -381,12 +381,12 @@ if last_faces['top']:
     roof_storey.Elevation       = float(roof_z)
     roof_storey.ObjectPlacement = make_placement(model, z=roof_z)
     ifcopenshell.api.run("aggregate.assign_object", model,
-        relating_object=building, product=roof_storey)
+        relating_object=building, products=[roof_storey])
 
     roof_slab = create_floor_slab(model, ctx_body,
         roof_poly, roof_z, FLOOR_THICKNESS, floor_type)
     ifcopenshell.api.run("spatial.assign_container", model,
-        relating_structure=roof_storey, product=roof_slab)
+        relating_structure=roof_storey, products=[roof_slab])
 
     print(f"\nRoof IfcSlab  z={roof_z:.2f} m  area={roof_poly.area:.2f} m²  ✓")
 
