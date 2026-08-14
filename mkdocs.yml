@@ -38,6 +38,7 @@ nav:
 
   - Google Colab: 
     - Introdução: ./tuto_colab_build/build123d_basic_gc.ipynb
+    - Modo Builder: ./tuto_colab_build/build123d_basic_modo_builder.ipynb
     - Primitivas: ./tuto_colab_build/build123d_primitives_gc.ipynb
     - Treliças: ./tuto_colab_build/build123d_trusses_gc.ipynb
     - Modelagem: ./tuto_colab_build/2d_to_3d.ipynb
