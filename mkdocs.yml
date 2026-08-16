@@ -5,7 +5,7 @@ copyright: Copyright &copy; 2026 Fernando Ferraz Ribeiro
 
 theme:
   features:
-
+    - content.code.copy
     #- navigation.sections
     - toc.integrate
     #- navigation.tabs
