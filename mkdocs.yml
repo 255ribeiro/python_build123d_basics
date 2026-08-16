@@ -47,9 +47,11 @@ nav:
     - Exercício Multipavimentos com Perfil: ./tuto_colab_build/build123d_multiplos_pav_perfil.ipynb
     - Exercício pavimentos deslocados: ./tuto_colab_build/multi_pav_b3d_ramdom_disp_resolvido.ipynb
     - Criando Volumes com Loft: ./tuto_colab_build/multi_pav_loft.ipynb
+
     - Exportação IFC:
       - Exportação IFC: ./tuto_colab_build/step_to_ifc.ipynb
       - Exportação IFC em Malha: ./tuto_colab_build/step_to_ifc_mesh.ipynb
+  - Instalando em ambiente local: ./tuto_colab_build/local_setup_vscode_uv_ocp_viewer.ipynb
 
 
   - Apêndice:
