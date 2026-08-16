@@ -51,6 +51,7 @@ nav:
     - Exportação IFC:
       - Exportação IFC: ./tuto_colab_build/step_to_ifc.ipynb
       - Exportação IFC em Malha: ./tuto_colab_build/step_to_ifc_mesh.ipynb
+  
   - Instalando em ambiente local: ./tuto_colab_build/local_setup_vscode_uv_ocp_viewer.ipynb
 
 
