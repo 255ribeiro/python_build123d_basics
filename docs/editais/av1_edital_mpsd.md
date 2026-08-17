@@ -180,7 +180,7 @@ grupo_XX/
 
 ---
 
-#### **Data de entrega: verificar no ava da disciplina**
+#### **Data de entrega: 14/09/2026**
 
 #### A entrega fora do prazo terá descontos na nota.
 
