@@ -61,6 +61,8 @@ nav:
     - GitHub Copilot para professores e estudantes: ./conceitos/Resumo_GitHub_Copilot_Educacao_2026.md
 
   - Arquivos para download: ./down_files/down_files.md
+  - Editais:
+    - Edital Av1: ./editais/av1_edital_mpsd.md
 
 markdown_extensions:
   - admonition
