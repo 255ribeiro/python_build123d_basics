@@ -58,7 +58,15 @@ O modelo deve ser inteiramente **paramétrico**: todas as dimensões (largura, p
   - Recuos e balanços
   - Pátios ou vazios internos
   - Rotações ou inclinações de volumes
-  - recomenda-se:  **uma operações de modelagem**, à escolha dos discentes. Exemplos: operações booleanas (união, subtração, interseção), extrusão (`extrude`), varredura (`sweep`), transição entre perfis (`loft`), entre outras disponíveis no build123d, e ao menos um perfil dxf importado para o ambiente de código.
+  - utilização dos recursos da linguagem Python como:
+    - Loops
+    - condicionais lógicas
+    - manipulação de listas
+  <!-- - recomenda-se:  
+    - ao menos **uma operação de modelagem**, à escolha dos discentes. Exemplos: operações booleanas (união, subtração, interseção), extrusão (`extrude`), varredura (`sweep`), transição entre perfis (`loft`), entre outras disponíveis no build123d
+    - ao menos um perfil dxf importado para o ambiente de código.
+    - ao menos um loop
+    - ao menos uma condicional lógica (if/else/elif) -->
 
 ---
 
