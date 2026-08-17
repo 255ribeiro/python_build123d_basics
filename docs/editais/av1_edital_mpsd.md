@@ -35,7 +35,7 @@ CURSO DE ARQUITETURA E URBANISMO
 
 <h4 style="background:lightblue">Orientações gerais</h4>
 
-Os trabalhos podem ser feitos de forma **individual ou em grupos de até cinco (5) alunos**. O nome de todos os integrantes do grupo deve constar no início do código, como comentários ou célula MArkdown no caso de arquivos do google colab.
+Os trabalhos podem ser feitos de forma **individual ou em duplas**. O nome de todos os integrantes do grupo deve constar no início do código, como comentários ou célula Markdown no caso de arquivos do google colab.
 
 O código deve ser comentado, demonstrando o entendimento de cada etapa do processo de modelagem.
 
@@ -45,21 +45,20 @@ O código deve ser comentado, demonstrando o entendimento de cada etapa do proce
 
 ### 1. Modelagem do Volume Edificado
 
-Utilizando a biblioteca **CadQuery** em Python, modele o **volume básico de uma edificação de múltiplos pavimentos**, com no mínimo **30 andares**.
+Utilizando a biblioteca **build123d** em Python, modele o **volume básico de uma edificação de múltiplos pavimentos**.
 
 O modelo deve ser inteiramente **paramétrico**: todas as dimensões (largura, profundidade, altura por pavimento, número de pavimentos, recuos, etc.) devem ser definidas como variáveis no código.
 
 **Requisitos mínimos do modelo:**
 
 - Implantação com dimensões reais (em metros), compatíveis com um edifício de alto padrão
-- Número de pavimentos ≥ 30
+- Número de pavimentos ≥ 50
 - O volume deve refletir uma composição arquitetônica com intenção projetual — não apenas uma caixa única. Exemplos de recursos permitidos:
   - Variação volumétrica entre pavimentos (torre, embasamento, coroamento)
   - Recuos e balanços
   - Pátios ou vazios internos
   - Rotações ou inclinações de volumes
-<!-- - O modelo deve utilizar ao menos **duas operações de modelagem** diferentes, à escolha do grupo. Exemplos: operações booleanas (união, subtração, interseção), extrusão (`extrude`), varredura (`sweep`), transição entre perfis (`loft`), entre outras disponíveis no CadQuery -->
-
+  - recomenda-se:  **uma operações de modelagem**, à escolha dos discentes. Exemplos: operações booleanas (união, subtração, interseção), extrusão (`extrude`), varredura (`sweep`), transição entre perfis (`loft`), entre outras disponíveis no build123d, e ao menos um perfil dxf importado para o ambiente de código.
 
 ---
 
@@ -68,9 +67,11 @@ O modelo deve ser inteiramente **paramétrico**: todas as dimensões (largura, p
 Exporte o modelo final:
 
 ```python
-cq.exporters.export(modelo, "edificio.step")
+import build123d as b3d
+
+b3d.export_step(modelo, "edificio.step")
 # ou
-cq.exporters.export(modelo, "edificio.stl")
+b3d.export_stl(modelo, "edificio.stl")
 ```
 
 O arquivo exportado deve ser entregue junto com o código.
@@ -129,21 +130,21 @@ O banner deve conter, no mínimo:
 
 - Nome do projeto e dos integrantes do grupo
 - Perspectivas geradas pela IA (ao menos duas)
-- Uma imagem do modelo CadQuery (wireframe ou renderizado)
+- Uma imagem do modelo build123d (wireframe ou renderizado)
 - Breve memorial descritivo da proposta (até 150 palavras)
-- Dados quantitativos: número de pavimentos, área do pavimento tipo, área total construída
+- Dados quantitativos: número de pavimentos, área do pavimento tipo (sé aplicável), área total construída
 
 ---
 
 <h4 style="background:lightblue">Critérios de avaliação</h4>
 
-| Critério                                                                          | Peso |
-| --------------------------------------------------------------------------------- | ---- |
-| Qualidade e complexidade do modelo CadQuery                                       | 30%  |
-| Uso correto de parametrização e diversidade das operações de modelagem utilizadas | 20%  |
-| Qualidade das capturas e coerência com o modelo                                   | 15%  |
+| Critério                                                                                                                       | Peso |
+| ------------------------------------------------------------------------------------------------------------------------------ | ---- |
+| Qualidade do código. Uso adequado dos recursos da linguagem Python e do pacote build123d. Clareza e coerência nos comentários. | 20%  |
+| Organização da entrega conforme orientação do edital. Deve ter todos os arquivos pedidos | 10% |
+| Qualidade volumétrica da proposta | 25% |
 | Qualidade das imagens geradas pela IA e aderência ao volume                       | 20%  |
-| Banner — clareza, organização e completude                                        | 15%  |
+| Banner — clareza, organização e completude                                        | 25%  |
 
 ---
 
@@ -171,7 +172,7 @@ grupo_XX/
 
 ---
 
-#### **Data de entrega: 13 de abril de 2026**
+#### **Data de entrega: verificar no ava da disciplina**
 
 #### A entrega fora do prazo terá descontos na nota.
 
