@@ -35,7 +35,7 @@ CURSO DE ARQUITETURA E URBANISMO
 
 <h4 style="background:lightblue">Orientações gerais</h4>
 
-Os trabalhos podem ser feitos de forma **individual ou em duplas**. O nome de todos os integrantes do grupo deve constar no início do código, como comentários ou célula Markdown no caso de arquivos do google colab.
+Os trabalhos podem ser feitos de forma **individual ou em duplas**. O nome dos integrantes deve constar no início do código, como comentários, ou célula Markdown no caso de arquivos .ipynb, como os utilizados pelo google colab.
 
 O código deve ser comentado, demonstrando o entendimento de cada etapa do processo de modelagem.
 
