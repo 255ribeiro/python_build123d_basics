@@ -28,7 +28,7 @@ else:
 # %%
 import itertools
 from build123d import *
-from cadquery_simple_viewer import show
+from cadquery_simpleviewer import show
 import numpy as np
 
 

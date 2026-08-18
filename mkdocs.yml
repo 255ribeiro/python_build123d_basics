@@ -42,6 +42,7 @@ nav:
     - Primitivas: ./tuto_colab_build/build123d_primitives_gc.ipynb
 
     - Treliças: ./tuto_colab_build/build123d_trusses_gc.ipynb
+    - Importando perfis: ./tuto_colab_build/build123d_dxf_import_gc.ipynb
     - Modelagem: ./tuto_colab_build/2d_to_3d.ipynb
     - Exercício Multipavimentos: ./tuto_colab_build/build123d_multiplos_pav.ipynb
     - Exercício Multipavimentos Resolvido: ./tuto_colab_build/multi_pav_b3d_resolvido.ipynb
