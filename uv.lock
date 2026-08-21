@@ -208,14 +208,19 @@ wheels = [
 
 [[package]]
 name = "cadquery-simpleviewer"
-version = "0.3.0"
+version = "0.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "plotly" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/82/7f/42f8a223a141a4d0df8e727806d8d72fb78b58fe9bd7c37efc5834855483/cadquery_simpleviewer-0.3.0.tar.gz", hash = "sha256:0bfac7d5e6974a3d8d36c722fc6bba4250d12772a4f604ca0e68e8299dff53f0", size = 163419 }
+sdist = { url = "https://files.pythonhosted.org/packages/27/ef/0b30aabc4d85ebd07b557faee9559af2ac7e0eca0b9aa372404160af526a/cadquery_simpleviewer-0.4.0.tar.gz", hash = "sha256:973be5338fed4b808ac70718d893296294301a51c2cc130b73860216321c77ff", size = 177686 }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/b8/c4/3005b4901822f4a7c6c6ad9ebf9f335f0b6c6ef37f8cbb78128f901e659c/cadquery_simpleviewer-0.3.0-py3-none-any.whl", hash = "sha256:c3124f9abdcfa95a62fb51853c8466a83f967da37bb323a6597a59c3070f128c", size = 14251 },
+    { url = "https://files.pythonhosted.org/packages/ac/de/107535ef10e1d0f6dd653d644b0d559c6dfa7748902d653fb231bbd0104b/cadquery_simpleviewer-0.4.0-py3-none-any.whl", hash = "sha256:5ba7b3683f445f5867360b08687ffa7af800835d57c2d5d7e07f61eb16ad1e4e", size = 20236 },
+]
+
+[package.optional-dependencies]
+interactive = [
+    { name = "ipywidgets" },
 ]
 
 [[package]]
@@ -1433,7 +1438,7 @@ version = "0.1.0"
 source = { virtual = "." }
 dependencies = [
     { name = "build123d" },
-    { name = "cadquery-simpleviewer" },
+    { name = "cadquery-simpleviewer", extra = ["interactive"] },
     { name = "ezdxf" },
     { name = "ipykernel" },
     { name = "numpy" },
@@ -1457,7 +1462,7 @@ notebook = [
 [package.metadata]
 requires-dist = [
     { name = "build123d", specifier = ">=0.11.1" },
-    { name = "cadquery-simpleviewer", specifier = "==0.3.0" },
+    { name = "cadquery-simpleviewer", extras = ["interactive"], specifier = ">=0.4.0" },
     { name = "ezdxf", specifier = ">=1.4.2" },
     { name = "ipykernel", specifier = ">=7.3.0" },
     { name = "numpy", specifier = ">=2.1.0" },

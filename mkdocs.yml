@@ -39,6 +39,7 @@ nav:
     - Introdução: ./tuto_colab_build/build123d_basic_gc.ipynb
     - Modo Builder: ./tuto_colab_build/build123d_basic_modo_builder.ipynb
     - Seleção e operações booleanas: ./tuto_colab_build/build123d_selecao_vertices_faces_gc.ipynb
+    - Modo interativo: ./tuto_colab_build/build123d_interactive_exploration.ipynb
     - Primitivas: ./tuto_colab_build/build123d_primitives_gc.ipynb
     - Treliças: ./tuto_colab_build/build123d_trusses_gc.ipynb
     - Importando perfis: ./tuto_colab_build/build123d_dxf_import_gc.ipynb
